@@ -18,4 +18,19 @@
         android:layout_height="wrap_content"
         android:text="Go to second activity"
         android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/answer_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Answer will appear here"
+        android:layout_marginTop="16dp"
+        android:textSize="16sp"/>
+    <Button
+        android:id="@+id/open_site_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open voting site"
+        android:layout_marginTop="16dp"/>
+
 </LinearLayout>
