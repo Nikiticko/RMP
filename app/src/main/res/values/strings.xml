@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RMP_coursach</string>
+    <string name="question_placeholder">Question will appear here</string>
 </resources>
