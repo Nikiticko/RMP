@@ -15,18 +15,26 @@ public class SecondActivity extends Activity {
         setContentView(R.layout.activity_second);
         Log.d("LifeCycle", "SecondActivity: onCreate");
 
-        // Получаем переданный вопрос
+        // Получаем переданные данные
         String question = getIntent().getStringExtra("question_text");
+        int pollId = getIntent().getIntExtra("poll_id", -1);
+        boolean isAnonymous = getIntent().getBooleanExtra("is_anonymous", false);
 
-        // Отображаем вопрос
-        TextView textView = findViewById(R.id.question_text_view);
-        textView.setText(question);
+        // Отображаем текст вопроса
+        TextView questionTextView = findViewById(R.id.question_text_view);
+        questionTextView.setText(question);
 
-        // Кнопка возврата без результата
+        // Отображаем доп. информацию
+        TextView detailsTextView = findViewById(R.id.poll_details_text);
+        String details = "Poll ID: " + pollId + "\n" +
+                (isAnonymous ? "Anonymous voting" : "Public voting");
+        detailsTextView.setText(details);
+
+        // Кнопка возврата
         Button backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(v -> finish());
 
-        // Кнопка возврата с результатом
+        // Кнопка возврата результата
         Button sendResultButton = findViewById(R.id.send_result_button);
         sendResultButton.setOnClickListener(v -> {
             Intent resultIntent = new Intent();
@@ -36,33 +44,9 @@ public class SecondActivity extends Activity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("LifeCycle", "SecondActivity: onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("LifeCycle", "SecondActivity: onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d("LifeCycle", "SecondActivity: onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d("LifeCycle", "SecondActivity: onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("LifeCycle", "SecondActivity: onDestroy");
-    }
+    @Override protected void onStart() { super.onStart(); Log.d("LifeCycle", "SecondActivity: onStart"); }
+    @Override protected void onResume() { super.onResume(); Log.d("LifeCycle", "SecondActivity: onResume"); }
+    @Override protected void onPause() { super.onPause(); Log.d("LifeCycle", "SecondActivity: onPause"); }
+    @Override protected void onStop() { super.onStop(); Log.d("LifeCycle", "SecondActivity: onStop"); }
+    @Override protected void onDestroy() { super.onDestroy(); Log.d("LifeCycle", "SecondActivity: onDestroy"); }
 }

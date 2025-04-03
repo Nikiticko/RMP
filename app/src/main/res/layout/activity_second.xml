@@ -1,29 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <TextView
-        android:id="@+id/question_text_view"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/question_placeholder"
-        android:textSize="18sp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to main" />
+        <TextView
+            android:id="@+id/question_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/question_placeholder"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"/>
 
-    <Button
-        android:id="@+id/send_result_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send answer back"
-        android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/poll_details_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/poll_details_placeholder"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
 
-</LinearLayout>
+        <Button
+            android:id="@+id/send_result_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_send_result"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_back_to_main" />
+
+    </LinearLayout>
+</ScrollView>

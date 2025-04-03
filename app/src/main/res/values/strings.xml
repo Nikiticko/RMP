@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">RMP_coursach</string>
-    <string name="question_placeholder">Question will appear here</string>
+    <string name="app_name">Polls App</string>
+    <string name="hint_enter_question">Enter your poll question</string>
+    <string name="button_go_to_second">Go to second activity</string>
+    <string name="button_open_site">Open voting site</string>
+    <string name="label_answer_placeholder">Answer will appear here</string>
+    <string name="button_switch_language">Switch language</string>
+    <string name="question_placeholder">Question appears here</string>
+    <string name="poll_details_placeholder">Details will appear here</string>
+    <string name="button_send_result">Send answer back</string>
+    <string name="button_back_to_main">Back to main</string>
 
 </resources>

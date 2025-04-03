@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Опросы</string>
+    <string name="hint_enter_question">Введите вопрос опроса</string>
+    <string name="button_go_to_second">Перейти ко второму экрану</string>
+    <string name="button_open_site">Открыть сайт голосования</string>
+    <string name="label_answer_placeholder">Здесь появится ответ</string>
+    <string name="button_switch_language">Сменить язык</string>
+    <string name="question_placeholder">Здесь появится вопрос</string>
+    <string name="poll_details_placeholder">Здесь будет информация об опросе</string>
+    <string name="button_send_result">Отправить ответ</string>
+    <string name="button_back_to_main">Назад на главный экран</string>
+
+</resources>

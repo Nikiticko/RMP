@@ -9,28 +9,35 @@
         android:id="@+id/question_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your poll question"
+        android:hint="@string/hint_enter_question"
         android:inputType="text" />
 
     <Button
         android:id="@+id/submit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to second activity"
+        android:text="@string/button_go_to_second"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/open_site_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_open_site"
         android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/answer_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Answer will appear here"
+        android:text="@string/label_answer_placeholder"
         android:layout_marginTop="16dp"
         android:textSize="16sp"/>
     <Button
-        android:id="@+id/open_site_button"
+        android:id="@+id/language_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open voting site"
+        android:text="@string/button_switch_language"
         android:layout_marginTop="16dp"/>
 
 </LinearLayout>
