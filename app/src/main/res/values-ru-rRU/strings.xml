@@ -9,5 +9,6 @@
     <string name="poll_details_placeholder">Здесь будет информация об опросе</string>
     <string name="button_send_result">Отправить ответ</string>
     <string name="button_back_to_main">Назад на главный экран</string>
+    <string name="button_switch_theme">Сменить тему</string>
 
 </resources>

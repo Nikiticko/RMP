@@ -1,6 +1,5 @@
 package com.example.rmp_coursach;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -13,21 +12,25 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.Locale;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        // Шаг 1. Применение локали (только если отличается)
+
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
         String savedLang = prefs.getString("lang", "en");
         String currentLang = Locale.getDefault().getLanguage();
-
         if (!currentLang.equals(savedLang)) {
             setLocale(savedLang);
         }
+
+        int themeMode = prefs.getInt("theme_mode", AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(themeMode);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -38,6 +41,7 @@ public class MainActivity extends Activity {
         Button submitButton = findViewById(R.id.submit_button);
         Button openSiteButton = findViewById(R.id.open_site_button);
         Button languageButton = findViewById(R.id.language_button);
+        Button themeButton = findViewById(R.id.theme_button);
         TextView answerTextView = findViewById(R.id.answer_text_view);
 
         if (savedInstanceState != null) {
@@ -47,35 +51,38 @@ public class MainActivity extends Activity {
             }
         }
 
-        // Переход ко второй активности
         submitButton.setOnClickListener(v -> {
             String questionText = questionInput.getText().toString();
-
             Intent intent = new Intent(MainActivity.this, SecondActivity.class);
             intent.putExtra("question_text", questionText);
-            intent.putExtra("poll_id", 42); // Пример ID опроса
-            intent.putExtra("is_anonymous", true); // Пример флага анонимности
-
+            intent.putExtra("poll_id", 42);
+            intent.putExtra("is_anonymous", true);
             startActivityForResult(intent, 1);
         });
 
-
-
-        // Открытие сайта
         openSiteButton.setOnClickListener(v -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
             startActivity(browserIntent);
         });
 
-        // Смена языка
         languageButton.setOnClickListener(v -> {
             String currentLangCode = prefs.getString("lang", "en");
             String newLangCode = currentLangCode.equals("ru") ? "en" : "ru";
             prefs.edit().putString("lang", newLangCode).apply();
-
             if (!Locale.getDefault().getLanguage().equals(newLangCode)) {
                 setLocale(newLangCode);
             }
+        });
+
+        themeButton.setOnClickListener(v -> {
+            int currentMode = AppCompatDelegate.getDefaultNightMode();
+            int newMode = (currentMode == AppCompatDelegate.MODE_NIGHT_YES)
+                    ? AppCompatDelegate.MODE_NIGHT_NO
+                    : AppCompatDelegate.MODE_NIGHT_YES;
+
+            prefs.edit().putInt("theme_mode", newMode).apply();
+            AppCompatDelegate.setDefaultNightMode(newMode);
+            recreate();
         });
     }
 

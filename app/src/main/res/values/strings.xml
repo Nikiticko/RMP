@@ -9,5 +9,7 @@
     <string name="poll_details_placeholder">Details will appear here</string>
     <string name="button_send_result">Send answer back</string>
     <string name="button_back_to_main">Back to main</string>
+    <string name="button_switch_theme">Switch theme</string>
+
 
 </resources>

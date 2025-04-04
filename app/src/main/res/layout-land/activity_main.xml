@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <!-- Левая колонка -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dp"
@@ -33,8 +34,16 @@
             android:layout_height="wrap_content"
             android:text="@string/button_switch_language"
             android:layout_marginTop="8dp" />
+
+        <Button
+            android:id="@+id/theme_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_switch_theme"
+            android:layout_marginTop="8dp" />
     </LinearLayout>
 
+    <!-- Правая колонка -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dp"
