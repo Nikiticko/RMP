@@ -1,68 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- Левая колонка -->
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingEnd="8dp">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
 
-        <EditText
-            android:id="@+id/question_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_enter_question"
-            android:inputType="text" />
+        <!-- Левая колонка -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingEnd="8dp">
 
-        <TextView
-            android:id="@+id/answer_text_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/label_answer_placeholder"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp" />
+            <EditText
+                android:id="@+id/question_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:layout_marginHorizontal="16dp"
+                android:hint="@string/hint_enter_question"
+                android:inputType="text"
+                android:autofillHints="name" />
 
-        <Button
-            android:id="@+id/language_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_switch_language"
-            android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/answer_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_answer_placeholder"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/theme_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_switch_theme"
-            android:layout_marginTop="8dp" />
+            <Button
+                android:id="@+id/language_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_switch_language"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/theme_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_switch_theme"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/start_service_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Service"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/get_data_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Получить число из сервиса"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
+
+        <!-- Правая колонка -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="8dp">
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_go_to_second" />
+
+            <Button
+                android:id="@+id/open_site_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_open_site"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
     </LinearLayout>
-
-    <!-- Правая колонка -->
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:paddingStart="8dp">
-
-        <Button
-            android:id="@+id/submit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_go_to_second" />
-
-        <Button
-            android:id="@+id/open_site_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_open_site"
-            android:layout_marginTop="8dp" />
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

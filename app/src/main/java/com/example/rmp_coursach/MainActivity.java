@@ -1,14 +1,18 @@
 package com.example.rmp_coursach;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,9 +23,25 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private BoundService boundService;
+    private boolean isBound = false;
+
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            BoundService.LocalBinder binder = (BoundService.LocalBinder) service;
+            boundService = binder.getService();
+            isBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            isBound = false;
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
         String savedLang = prefs.getString("lang", "en");
         String currentLang = Locale.getDefault().getLanguage();
@@ -42,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         Button openSiteButton = findViewById(R.id.open_site_button);
         Button languageButton = findViewById(R.id.language_button);
         Button themeButton = findViewById(R.id.theme_button);
+        Button startServiceButton = findViewById(R.id.start_service_button);
+        Button getDataButton = findViewById(R.id.get_data_button);
         TextView answerTextView = findViewById(R.id.answer_text_view);
 
         if (savedInstanceState != null) {
@@ -84,6 +106,24 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(newMode);
             recreate();
         });
+
+        startServiceButton.setOnClickListener(v -> {
+            Intent serviceIntent = new Intent(this, MyService.class);
+            startService(serviceIntent);
+        });
+
+        getDataButton.setOnClickListener(v -> {
+            if (isBound && boundService != null) {
+                int number = boundService.getRandomNumber();
+                Toast.makeText(this, "Случайное число: " + number, Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Сервис не привязан", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Привязка к BoundService
+        Intent bindIntent = new Intent(this, BoundService.class);
+        bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
     }
 
     private void setLocale(String langCode) {
@@ -93,6 +133,16 @@ public class MainActivity extends AppCompatActivity {
         config.setLocale(locale);
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         recreate();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isBound) {
+            unbindService(serviceConnection);
+            isBound = false;
+        }
+        Log.d("LifeCycle", "MainActivity: onDestroy");
     }
 
     @Override
@@ -127,12 +177,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         Log.d("LifeCycle", "MainActivity: onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d("LifeCycle", "MainActivity: onDestroy");
     }
 
     @Override
