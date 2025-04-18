@@ -63,6 +63,12 @@
         android:text="@string/button_get_data"
         android:layout_marginTop="8dp" />
 
+    <Button
+        android:id="@+id/open_volley_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Открыть Volley-демо"
+        android:layout_marginTop="16dp" />
 
 
 </LinearLayout>

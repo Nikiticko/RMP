@@ -124,6 +124,14 @@ public class MainActivity extends AppCompatActivity {
         // Привязка к BoundService
         Intent bindIntent = new Intent(this, BoundService.class);
         bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
+
+
+        Button volleyButton = findViewById(R.id.open_volley_button);
+        volleyButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MainActivityVolley.class);
+            startActivity(intent);
+        });
+
     }
 
     private void setLocale(String langCode) {
