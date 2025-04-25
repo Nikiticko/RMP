@@ -14,6 +14,10 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.example.rmp_coursach.data.CatDao;
+import com.example.rmp_coursach.data.CatDatabase;
+import com.example.rmp_coursach.model.Cat;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -30,16 +34,18 @@ public class MainActivityVolley extends AppCompatActivity {
     private final List<String> imageUrls = new ArrayList<>();
     private int currentIndex = -1;
 
+    private CatDao catDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_volley); // ✅ сначала layout
+        setContentView(R.layout.activity_volley);
 
         catImageView = findViewById(R.id.catImageView);
         prevButton = findViewById(R.id.prevButton);
         nextButton = findViewById(R.id.nextButton);
+        Button backButton = findViewById(R.id.back_to_main_button);
 
-        Button backButton = findViewById(R.id.back_to_main_button); // ✅ теперь можно найти кнопку
         backButton.setOnClickListener(v -> finish());
 
         requestQueue = Volley.newRequestQueue(this);
@@ -57,6 +63,9 @@ public class MainActivityVolley extends AppCompatActivity {
                 cache.put(url, bitmap);
             }
         });
+
+        // DAO для записи в БД
+        catDao = CatDatabase.getDatabase(this).catDao();
 
         nextButton.setOnClickListener(v -> loadNextImage());
         prevButton.setOnClickListener(v -> showPreviousImage());
@@ -82,6 +91,17 @@ public class MainActivityVolley extends AppCompatActivity {
                                 R.drawable.ic_launcher_background,
                                 R.drawable.ic_launcher_foreground
                         ));
+
+                        // Сохраняем URL в Room
+                        Cat cat = new Cat(0, imageUrl); // передаём id=0, Room сгенерирует сам
+                        new Thread(() -> {
+                            try {
+                                catDao.insert(cat);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }).start();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

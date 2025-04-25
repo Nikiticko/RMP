@@ -131,6 +131,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, MainActivityVolley.class);
             startActivity(intent);
         });
+        Button openMvvmButton = findViewById(R.id.open_mvvm_button);
+        openMvvmButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MainActivityMVVM.class);
+            startActivity(intent);
+        });
+
 
     }
 
