@@ -32,6 +32,7 @@
         <activity android:name=".MainActivityVolley" android:exported="false" />
         <activity android:name=".SecondActivity" android:exported="false" />
         <activity android:name=".MainActivityMVVM" android:exported="false" />
+        <activity android:name=".MainActivityAnimation" android:exported="false" />
 
         <!-- Сервисы -->
         <service

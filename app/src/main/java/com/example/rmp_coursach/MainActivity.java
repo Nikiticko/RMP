@@ -136,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, MainActivityMVVM.class);
             startActivity(intent);
         });
+        Button animButton = findViewById(R.id.open_animation_button);
+        animButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, MainActivityAnimation.class);
+            startActivity(intent);
+        });
+
 
 
     }
